@@ -1,0 +1,13 @@
+<decorators defaultdir="/decorators">
+
+    <decorator name="home" page="home.jsp">
+        <pattern>/home/**</pattern>
+    </decorator>
+
+    <decorator name="detail" page="detail.jsp">
+        <pattern>/detail/**</pattern>
+    </decorator>
+
+    <decorator name="header" page="header.jsp" />
+    <decorator name="footer" page="footer.jsp" />
+</decorators>

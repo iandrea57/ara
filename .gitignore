@@ -1,3 +1,2 @@
 *.iml
-ara-test/target/
-ara-guice/target/
+*/target/

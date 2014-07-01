@@ -1,0 +1,38 @@
+html {
+    color: #333;
+    direction: ltr;
+}
+
+body {
+    font-size: 9pt;
+    font-family: Tahoma,Verdana,STHeiTi,simsun,sans-serif;
+}
+
+div {
+    display: block;
+}
+
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, button, textarea, p, blockquote, th, td {
+    margin: 0;
+    padding: 0;
+}
+
+.site-nav-wrapper {
+    height: 31px;
+}
+
+.site-nav {
+    background: url(/img/site-nav-bg.png) no-repeat;
+}
+
+.site-nav {
+    z-index: 1999;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-position: 0 -361px;
+    background-repeat: repeat-x;
+    height: 31px;
+    box-shadow: 0 0 3px rgba(0,0,0,0.8);
+}
