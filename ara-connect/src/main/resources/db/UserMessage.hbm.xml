@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.ara.connect.model.db.user.UserMessage" table="user_message" schema=""
+           catalog="ara">
+        <id name="id">
+            <column name="id" sql-type="bigint" length="19" not-null="true"/>
+        </id>
+        <property name="fromId">
+            <column name="from_id" sql-type="bigint" length="19"
+                    not-null="true"/>
+        </property>
+        <property name="toId">
+            <column name="to_id" sql-type="bigint" length="19" not-null="true"/>
+        </property>
+        <property name="msg">
+            <column name="msg" sql-type="text" length="65535" not-null="true"/>
+        </property>
+        <property name="addTime">
+            <column name="add_time" sql-type="timestamp" length="19"
+                    not-null="true"/>
+        </property>
+        <property name="status">
+            <column name="status" sql-type="int" length="10" not-null="true"/>
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="connection.url">jdbc:mysql://127.0.0.1:3306/ara?useUnicode=true&amp;characterEncoding=UTF-8&amp;autoReconnect=true</property>
+        <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="connection.username">ara</property>
+        <property name="connection.password">ara</property>
+        <property name="current_session_context_class">thread</property>
+        <mapping resource="db/User.hbm.xml"/>
+        <mapping class="com.ara.connect.model.db.user.User"/>
+        <mapping resource="db/UserMessage.hbm.xml"/>
+        <mapping class="com.ara.connect.model.db.user.UserMessage"/>
+        <mapping resource="db/UserStatus.hbm.xml"/>
+        <mapping class="com.ara.connect.model.db.user.UserStatus"/>
+        <mapping resource="db/UserFriend.hbm.xml"/>
+        <mapping class="com.ara.connect.model.db.user.UserFriend"/>
+        <!--<property name="current_session_context_class">thread</property>-->
+        <!-- DB schema will be updated if needed -->
+        <!-- <property name="hbm2ddl.auto">update</property> -->
+    </session-factory>
+</hibernate-configuration>

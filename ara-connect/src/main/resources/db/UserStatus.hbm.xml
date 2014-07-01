@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.ara.connect.model.db.user.UserStatus" table="user_status" schema=""
+           catalog="ara">
+        <id name="userId">
+            <column name="user_id" sql-type="bigint" length="19"
+                    not-null="true"/>
+        </id>
+        <property name="status">
+            <column name="status" sql-type="tinyint" length="3"
+                    not-null="true"/>
+        </property>
+    </class>
+</hibernate-mapping>

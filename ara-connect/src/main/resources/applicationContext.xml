@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+       http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- properties配置 -->
+	<bean id="propertyConfigurer"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath*:config/*.properties
+				</value>
+			</list>
+		</property>
+	</bean>
+
+    <!-- 自动包扫描 -->
+    <context:component-scan base-package="com.ara.connect.dao"/>
+    <context:component-scan base-package="com.ara.connect.service"/>
+    <context:component-scan base-package="com.ara.connect.demo"/>
+
+
+    <!-- 数据库以及DAO配置 -->
+    <bean id="sessionFactory"  class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+        <property name="configLocation" value="classpath:db/hibernate.cfg.xml" />
+    </bean>
+    <bean id="hibernateTemplete" class="org.springframework.orm.hibernate3.HibernateTemplate">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <bean id="common" class="com.ara.connect.dao.Common">
+        <property name="hibernateTemplate" ref="hibernateTemplete" />
+    </bean>
+    <!--<bean id="abstractDAO" abstract="true" class="com.ara.connect.dao.AbstractDAO">
+        <property name="common" ref="common"/>
+    </bean>
+    <bean id="userDAO" class="com.ara.connect.dao.UserDAO" parent="abstractDAO" />
+    <bean id="userNetConfDAO" class="com.ara.connect.dao.UserNetConfDAO" parent="abstractDAO" />-->
+
+    <!-- 事务管理器，相当于TransactionProxy,定义事务的开启、提交、回滚 -->
+    <bean id="htm" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <bean id="ti" class="org.springframework.transaction.interceptor.TransactionInterceptor">
+        <property name="transactionManager" ref="htm" />
+        <property name="transactionAttributes">
+            <props>
+                <!-- key:方法名称 -->
+                <prop key="insert*">PROPAGATION_REQUIRED</prop>
+                <prop key="update*">PROPAGATION_REQUIRED</prop>
+                <prop key="delete*">PROPAGATION_REQUIRED</prop>
+                <prop key="load*">PROPAGATION_REQUIRED,readOnly</prop>
+                <prop key="query*">PROPAGATION_REQUIRED,readOnly</prop>
+            </props>
+        </property>
+    </bean>
+
+    <!-- 自动代理，代理业务对象 -->
+    <bean class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">
+        <property name="beanNames">
+            <list>
+                <value>common</value>
+            </list>
+        </property>
+        <property name="interceptorNames">
+            <list>
+                <value>ti</value>
+            </list>
+        </property>
+    </bean>
+
+</beans>

@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.ara.connect.model.db.user.UserFriend" table="user_friend" schema=""
+           catalog="ara">
+        <id name="id">
+            <column name="id" sql-type="bigint" length="19" not-null="true"/>
+        </id>
+        <property name="userId">
+            <column name="user_id" sql-type="bigint" length="19"
+                    not-null="true"/>
+        </property>
+        <property name="friendId">
+            <column name="friend_id" sql-type="bigint" length="19"
+                    not-null="true"/>
+        </property>
+        <property name="addTime">
+            <column name="add_time" sql-type="timestamp" length="19"
+                    not-null="true"/>
+        </property>
+    </class>
+</hibernate-mapping>
